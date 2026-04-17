@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'srs',
     'statisticsc',
     'study',
+    'django rest framework',
 
 
 ]
