@@ -1,15 +1,25 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-from english.reviews.models import Review
+from card.models import Card
 
 
 # Create your models here.
 
 
 class SRSState(models.Model):
-    card_id = models.ForeignKey(Review, on_delete=models.CASCADE)
-    interval = models.IntegerField()
-    ease_factor = models.ForeignKey(Review, on_delete=models.CASCADE)
-    repetitions = models.IntegerField()
-    next_review = models.ForeignKey(Review, on_delete=models.CASCADE)
-    updated_at = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='srs_states')
+    card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='srs_states')
+    interval = models.PositiveIntegerField(default=0)
+    ease_factor = models.FloatField(default=2.5)
+    repetitions = models.PositiveIntegerField(default=0)
+    next_review = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'card'], name='unique_srs_state_per_user_card')
+        ]
+
+    def __str__(self):
+        return f'{self.user} - {self.card}'
