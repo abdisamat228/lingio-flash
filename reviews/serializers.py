@@ -1,7 +1,10 @@
 from rest_framework import serializers
+
 from .models import Review
 
-class ReviewsSerializer(serializers.ModelSerializer):
+
+class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'User', 'card', 'quality', 'reviewed_at']
+        fields = ['id', 'user', 'card', 'quality', 'reviewed_at']
+        read_only_fields = ['id', 'user', 'reviewed_at']

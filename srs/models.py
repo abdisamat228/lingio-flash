@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from card.models import Card
 
@@ -13,7 +14,7 @@ class SRSState(models.Model):
     interval = models.PositiveIntegerField(default=0)
     ease_factor = models.FloatField(default=2.5)
     repetitions = models.PositiveIntegerField(default=0)
-    next_review = models.DateTimeField()
+    next_review = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
