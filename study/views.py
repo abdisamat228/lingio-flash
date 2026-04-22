@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
-# Create your views here.
+from .models import Study
+from .serializers import StudySerializer
+
+class StudySessionStartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+class StudyNextCardView(APIView):
+    permission_classes = [IsAuthenticated]
+
+class StudySessionFinishView(APIView):
+    permission_classes = [IsAuthenticated]
