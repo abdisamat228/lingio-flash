@@ -1,17 +1,22 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
-from .models import SRS
-from .serializers import SRSSerializer
-from ..deck.models import Deck
+from .models import SRSState
+from .serializers import SRSStateSerializer
+
 
 
 class SRSStateListView(ListAPIView):
-    queryset = SRS.objects.all()
-    serializer_class = SRSSerializer
+    '''возвращает интервал'''
+    serializer_class = SRSStateSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return SRSState.objects.filter(user=self.request.user)
 
 class CardScheduleView(ListAPIView):
-    queryset = Deck.objects.all()
-    serializer_class = DeckSerializer
+    '''возвращает повторения'''
+    serializer_class = SRSStateSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return SRSState.objects.filter(user=self.request.user)
