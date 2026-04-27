@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import StudySessionStartView, StudyNextCardView
+from .views import StudySessionStartView, StudyNextCardView,StudySessionFinishView
 urlpatterns = [
     path('/api/v1/study/session/',StudySessionStartView.as_view()),
     path('/api/v1/study/next/', StudyNextCardView.as_view()),

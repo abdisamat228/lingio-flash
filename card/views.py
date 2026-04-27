@@ -13,16 +13,14 @@ class CardListCreateView(ListCreateAPIView):
 
 
 class CardDetailView(RetrieveUpdateDestroyAPIView):
-    '''Только свои карточки
-'''
+    '''Только свои карточки'''
     queryset = Card.objects.all()
     serializer_class = CardSerializer
     permission_classes = [IsAuthenticated]
 
 
 class TodayCardsView(ListAPIView):
-    '''Только текущий пользователь
-'''
+    '''Только текущий пользователь'''
     serializer_class = CardSerializer
     permission_classes = [IsAuthenticated]
 

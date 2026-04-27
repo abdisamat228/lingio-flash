@@ -6,13 +6,11 @@ from .models import StudySession
 from .serializers import StudySessionSerializer
 
 class StudySessionStartView(APIView):
-    '''Следующая карточка
-'''
+    '''Следующая карточка'''
     permission_classes = [IsAuthenticated]
 
 class StudyNextCardView(APIView):
-    '''Если нет → сообщение
-'''
+    '''Если нет → сообщение'''
     permission_classes = [IsAuthenticated]
 
 class StudySessionFinishView(APIView):

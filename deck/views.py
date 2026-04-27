@@ -5,15 +5,13 @@ from .serializers import DeckSerializer
 
 
 class DeckListCreateView(ListCreateAPIView):
-    '''список колод пользователя
-'''
+    '''список колод пользователя'''
     queryset = Deck.objects.all()
     serializer_class = DeckSerializer
     permission_classes = [IsAuthenticated]
 
 class RetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
-    '''Получение / обновление / удаление
-'''
+    '''Получение / обновление / удаление'''
     queryset = Deck.objects.all()
     serializer_class = DeckSerializer
     permission_classes = [IsAuthenticated]

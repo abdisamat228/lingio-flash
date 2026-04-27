@@ -1,7 +1,7 @@
 
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
 
 
@@ -12,11 +12,10 @@ class RegisterView(CreateAPIView):
     '''Создание пользователя'''
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class LoginView(APIView):
-    '''Аутентификация пользователя
-'''
+    '''Аутентификация пользователя'''
     permission_classes = [IsAuthenticated]
 
 class LogoutView(APIView):
@@ -24,7 +23,6 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
 class MeView(APIView):
-    '''Возвращает текущего пользователя
-'''
+    '''Возвращает текущего пользователя'''
     permission_classes = [IsAuthenticated]
 
