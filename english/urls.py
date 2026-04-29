@@ -24,14 +24,13 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title= "Snippets API" ,
-      default_version= 'v1' ,
-      description= "Test description" ,
-      terms_of_service= "https://www.google.com/policies/terms/" ,
-      contact=openapi.Contact(email= "abhijeetkumarlucknow@gmail.com" ),
-      license=openapi.License(name= "License" ),
+      title="Lingio Flash API",
+      default_version='v1',
+      description="API documentation for the flashcards learning backend.",
+      contact=openapi.Contact(email="support@example.com"),
+      license=openapi.License(name="MIT"),
    ),
-   public= True ,
+   public=True,
    permission_classes=(permissions.AllowAny,),
 )
 
@@ -40,15 +39,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path("api/v1/",include("accounts.urls")),
-    path("api/v1/",include("card.urls")),
-    path("api/v1/",include("deck.urls")),
-    path("api/v1/",include("reviews.urls")),
-    path("api/v1/",include("srs.urls")),
-    # path("api/v1/",include("statisticsc.urls")),
-    path("api/v1/",include("study.urls")),
-
-
+    path('api/v1/auth/', include('accounts.urls')),
+    path('api/v1/', include('deck.urls')),
+    path('api/v1/', include('card.urls')),
+    path('api/v1/', include('reviews.urls')),
+    path('api/v1/', include('srs.urls')),
+    path('api/v1/', include('statisticsc.urls')),
+    path('api/v1/', include('study.urls')),
 ]
 
 if settings.DEBUG:

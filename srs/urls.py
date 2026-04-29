@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import SRSStateListView, CardScheduleView
 urlpatterns = [
-    path('tts/', SRSStateListView.as_view()),
-    path('tts/{card_id}/', CardScheduleView.as_view()),
+    path('srs/', SRSStateListView.as_view()),
+    path('cards/<int:card_id>/schedule/', CardScheduleView.as_view()),
 ]
