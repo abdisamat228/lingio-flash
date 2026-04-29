@@ -1,10 +1,12 @@
+from django.contrib.auth import authenticate
+from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import JWTLoginSerializer, RegisterSerializer, UserSerializer
+from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 
 
 class RegisterView(CreateAPIView):
@@ -12,9 +14,33 @@ class RegisterView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
-class LoginView(TokenObtainPairView):
+class LoginView(APIView):
     permission_classes = [AllowAny]
-    serializer_class = JWTLoginSerializer
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = authenticate(
+            request,
+            username=serializer.validated_data['username'],
+            password=serializer.validated_data['password'],
+        )
+        if user is None:
+            return Response({'detail': 'Invalid username or password.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        refresh = RefreshToken.for_user(user)
+        refresh['username'] = user.username
+        refresh['email'] = user.email
+
+        return Response(
+            {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': UserSerializer(user).data,
+            },
+            status=status.HTTP_200_OK,
+        )
 
 
 class LogoutView(APIView):
