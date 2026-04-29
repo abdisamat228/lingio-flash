@@ -1,11 +1,10 @@
-from django.contrib.auth import authenticate, login, logout
-from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
+from .serializers import JWTLoginSerializer, RegisterSerializer, UserSerializer
 
 
 class RegisterView(CreateAPIView):
@@ -13,29 +12,16 @@ class RegisterView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
-class LoginView(APIView):
+class LoginView(TokenObtainPairView):
     permission_classes = [AllowAny]
-
-    def post(self, request):
-        serializer = LoginSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = authenticate(
-            request,
-            username=serializer.validated_data['username'],
-            password=serializer.validated_data['password'],
-        )
-        if user is None:
-            return Response({'detail': 'Invalid credentials.'}, status=status.HTTP_400_BAD_REQUEST)
-        login(request, user)
-        return Response(UserSerializer(user).data)
+    serializer_class = JWTLoginSerializer
 
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        logout(request)
-        return Response({'detail': 'Logged out successfully.'}, status=status.HTTP_200_OK)
+        return Response({'detail': 'JWT logout is handled client-side by deleting tokens.'})
 
 
 class MeView(APIView):
