@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Deck(models.Model):
+    '''отделить одни знания от других'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='decks')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)

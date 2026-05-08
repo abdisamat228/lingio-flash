@@ -4,6 +4,7 @@ from .models import SRSState
 
 
 class SRSStateSerializer(serializers.ModelSerializer):
+    '''фиксирует разовое действие'''
     class Meta:
         model = SRSState
         fields = ['id', 'user', 'card', 'interval', 'ease_factor', 'repetitions', 'next_review', 'updated_at']

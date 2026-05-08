@@ -9,6 +9,7 @@ from card.models import Card
 
 
 class SRSState(models.Model):
+    '''Он определяет'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='srs_states')
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='srs_states')
     interval = models.PositiveIntegerField(default=0)

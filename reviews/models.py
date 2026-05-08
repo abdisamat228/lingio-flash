@@ -10,6 +10,7 @@ from card.models import Card
 
 
 class Review(models.Model):
+    '''Когда именно ты повторил карточку'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name='reviews')
     quality = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])

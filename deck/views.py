@@ -6,6 +6,7 @@ from .serializers import DeckSerializer
 
 
 class DeckListCreateView(ListCreateAPIView):
+    '''это целая коробка с такими карточками'''
     serializer_class = DeckSerializer
     permission_classes = [IsAuthenticated]
 
@@ -17,6 +18,7 @@ class DeckListCreateView(ListCreateAPIView):
 
 
 class DeckDetailView(RetrieveUpdateDestroyAPIView):
+    '''чтобы почитать описание и отзывы'''
     serializer_class = DeckSerializer
     permission_classes = [IsAuthenticated]
     lookup_field = 'id'

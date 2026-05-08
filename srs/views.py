@@ -6,6 +6,7 @@ from .serializers import SRSStateSerializer
 
 
 class SRSStateListView(ListAPIView):
+    '''Карточки, которые ты еще ни разу не видел'''
     serializer_class = SRSStateSerializer
     permission_classes = [IsAuthenticated]
 
@@ -14,6 +15,7 @@ class SRSStateListView(ListAPIView):
 
 
 class CardScheduleView(ListAPIView):
+    '''Сколько карточек придет на повторение завтра'''
     serializer_class = SRSStateSerializer
     permission_classes = [IsAuthenticated]
 

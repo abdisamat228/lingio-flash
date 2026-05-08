@@ -4,6 +4,7 @@ from .models import Deck
 
 
 class DeckSerializer(serializers.ModelSerializer):
+    '''Он собирает информацию о колоде'''
     class Meta:
         model = Deck
         fields = ['id', 'user', 'title', 'description', 'is_public', 'created_at']

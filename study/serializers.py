@@ -4,6 +4,7 @@ from .models import StudySession
 
 
 class StudySessionSerializer(serializers.ModelSerializer):
+    '''это «дирижер» и «летописец» твоего учебного процесса'''
     class Meta:
         model = StudySession
         fields = ['id', 'user', 'started_at', 'finished_at']

@@ -37,6 +37,7 @@ def _update_srs_state(state, quality):
 
 
 class ReviewListView(ListAPIView):
+    '''просто показывал тебе содержимое колоды'''
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
 
@@ -45,6 +46,7 @@ class ReviewListView(ListAPIView):
 
 
 class ReviewAnswerView(APIView):
+    '''то функция, которая обрабатывает твой ответ на конкретную карточку'''
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -71,6 +73,7 @@ class ReviewAnswerView(APIView):
 
 
 class NextReviewCardView(APIView):
+    '''какую карточку подсунуть тебе следующей'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

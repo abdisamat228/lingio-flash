@@ -5,6 +5,7 @@ from django.db import models
 
 
 class StudySession(models.Model):
+    '''Пользователь не отвлекался'''
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='study_sessions')
     started_at = models.DateTimeField(auto_now_add=True)
     finished_at = models.DateTimeField(null=True, blank=True)

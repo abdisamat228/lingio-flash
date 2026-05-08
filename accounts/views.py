@@ -10,11 +10,13 @@ from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 
 
 class RegisterView(CreateAPIView):
+    """РЕГИСТРИРУЕТ"""
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
 
 class LoginView(APIView):
+    '''ВХОД В СИСТЕМУ'''
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -44,6 +46,7 @@ class LoginView(APIView):
 
 
 class LogoutView(APIView):
+    '''Аннулирование токена или сессии'''
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -51,6 +54,7 @@ class LogoutView(APIView):
 
 
 class MeView(APIView):
+    '''Пока ты авторизован'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

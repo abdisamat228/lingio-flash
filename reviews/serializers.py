@@ -4,6 +4,7 @@ from .models import Review
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    '''Проверяет, существует ли карточка, на которую ты ответил'''
     class Meta:
         model = Review
         fields = ['id', 'user', 'card', 'quality', 'reviewed_at']

@@ -10,6 +10,7 @@ from .serializers import CardSerializer
 
 
 class CardListCreateView(ListCreateAPIView):
+    '''Она не создает одну маленькую задачу'''
     serializer_class = CardSerializer
     permission_classes = [IsAuthenticated]
 
@@ -37,6 +38,7 @@ class CardDetailView(RetrieveUpdateDestroyAPIView):
 
 
 class TodayCardsView(ListAPIView):
+    '''В интерфейсе этот блок обычно находится в самом верху или выделен цветом'''
     serializer_class = CardSerializer
     permission_classes = [IsAuthenticated]
 

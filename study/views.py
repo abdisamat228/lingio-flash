@@ -13,6 +13,7 @@ from .serializers import StudySessionSerializer
 
 
 class StudySessionStartView(APIView):
+    '''Как только ты открываешь этот экран, система начинает «перемешивать карты»'''
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -21,6 +22,7 @@ class StudySessionStartView(APIView):
 
 
 class StudyNextCardView(APIView):
+    '''Этот экран может показывать анимацию «перелистывания» или загрузки'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -40,6 +42,7 @@ class StudyNextCardView(APIView):
 
 
 class StudySessionFinishView(APIView):
+    '''Сколько всего карточек ты просмотрел за этот присест.'''
     permission_classes = [IsAuthenticated]
 
     def post(self, request):

@@ -14,6 +14,7 @@ from .serializers import CardStatsSerializer, DailyStatsSerializer, StatsOvervie
 
 
 class StatsOverviewView(APIView):
+    '''Сколько всего карточек в твоей базе'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -27,6 +28,7 @@ class StatsOverviewView(APIView):
 
 
 class DailyStatsView(APIView):
+    '''Сколько раз ты нажал кнопку «Ответить» сегодня'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -42,6 +44,7 @@ class DailyStatsView(APIView):
 
 
 class CardStatsView(APIView):
+    '''Когда ты её видел в последний раз'''
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

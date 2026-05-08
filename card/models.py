@@ -4,6 +4,7 @@ from deck.models import Deck
 
 
 class Card(models.Model):
+    '''Карточка — это контейнер для пары'''
     question = models.TextField()
     answer = models.TextField()
     image = models.ImageField(upload_to='cards/', blank=True, null=True)
